@@ -33,6 +33,7 @@ type TaskMessage struct {
 	Description string
 }
 
+// TaskChain ...
 type TaskChain []TaskBlock
 
 var taskChain TaskChain
@@ -50,10 +51,11 @@ func (task TaskBlock) calculateHash() (string, error) {
 	return hex.EncodeToString(hashed), nil
 }
 
-func appendBlock(task TaskBlock) {
+func appendBlock(tb TaskBlock) {
 	mutex.Lock()
-	taskChain = append(taskChain, task)
+	taskChain = append(taskChain, tb)
 	mutex.Unlock()
+	spew.Dump(tb)
 }
 
 func genesisBlock() {
@@ -69,7 +71,6 @@ func genesisBlock() {
 	}
 	genesisBlock.Hash = hash
 	appendBlock(genesisBlock)
-	spew.Dump(genesisBlock)
 }
 
 func generateBlock(oldTask TaskBlock, message TaskMessage) (TaskBlock, error) {
@@ -132,7 +133,6 @@ func handleCreateTask(w http.ResponseWriter, r *http.Request) {
 
 	if isBlockValid(newTask, taskChain[len(taskChain)-1]) {
 		appendBlock(newTask)
-		spew.Dump(newTask)
 	}
 
 	respondWithJSON(w, r, http.StatusCreated, newTask)
