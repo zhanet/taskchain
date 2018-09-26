@@ -173,7 +173,7 @@ func server() error {
 		MaxHeaderBytes: 1 << 20,
 	}
 
-	log.Println("GoChain Listening on port:", httpPort)
+	log.Println("TaskChain Listening on port:", httpPort)
 	if err := s.ListenAndServe(); err != nil {
 		return err
 	}
