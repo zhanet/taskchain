@@ -18,5 +18,12 @@
 # VS Code
 .vscode
 
+# IdeaIDE
+.idea
+
 # godotenv
 .env
+
+# Go Deps
+/vendor/
+/Godeps/

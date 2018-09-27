@@ -8,6 +8,15 @@ $ git clone https://github.com/zhanet/taskchain
 $ cd taskchain
 ```
 
+### 安装 dep 和依赖包
+```sh
+$ go get -u github.com/golang/dep/cmd/dep 
+
+对于 Mac，可用 brew install dep
+
+$ dep ensure
+```
+
 ## 运行
 ```sh
 $ echo PORT=9000 > .env
@@ -22,7 +31,7 @@ $ go run main.go
 
 ## 测试
 
-可以使用 [Postman](https://www.getpostman.com) 或 cURL，下面以 cURL 为例。
+可以使用 [Postman](https://www.getpostman.com/apps) 或 cURL，下面以 cURL 为例。
 
 新开一个shell窗口或Tab，输入以下命令：
 
